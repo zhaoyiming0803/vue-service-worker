@@ -8,14 +8,14 @@
 </head>
 <body>
   <div id="app"></div>
-  <script src="https://cdn.qingsongchou.com/fe-static/vue/vue.2.5.16.min.js"></script>
-  <script src="https://cdn.qingsongchou.com/fe-static/vue-router/vue-router.3.0.1.min.js"></script>
+  <!-- Vue v2.6.10 +  vue-router v3.0.6 -->
+  <script src="https://zymfe.github.io/static/js/vue-library.min.js"></script>
 
   <script type="text/javascript">
     ;(function () {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
-          navigator.serviceWorker.register('./sw.js?v=3', {scope: './'})
+          navigator.serviceWorker.register('./sw.js?v=201907212112', {scope: './'})
             .then(function (registration) {
               console.log('[Service Worker regist success]: ', registration);
             })

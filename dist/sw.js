@@ -5,7 +5,7 @@
  */
 ;(function () {
 
-  const cacheVersion = '201907211331';
+  const cacheVersion = '201907212112';
   const cacheName = 'vue-sw-cache' + cacheVersion;
   const preCacheUrls = [];
 
