@@ -5,7 +5,7 @@
  */
 ;(function () {
 
-  const cacheVersion = '201907212112';
+  const cacheVersion = '201907212150';
   const cacheName = 'vue-sw-cache' + cacheVersion;
   const preCacheUrls = [];
 
@@ -30,8 +30,8 @@
 
   self.addEventListener('activate', function (event) {
     event.waitUntil(Promise.all([
-      self.clients.claim(),
-      clearCache()
+      clearCache(),
+      self.clients.claim()
     ]));
   });
 
