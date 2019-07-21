@@ -5,11 +5,9 @@
  */
 ;(function () {
 
-  const cacheVersion = '201907211328';
+  const cacheVersion = '201907211331';
   const cacheName = 'vue-sw-cache' + cacheVersion;
-  const preCacheUrls = [
-    './static/'
-  ];
+  const preCacheUrls = [];
 
   function clearCache () {
     return caches.keys()
