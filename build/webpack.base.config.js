@@ -9,9 +9,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const config = require('../config/index');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const createServiceWorkerFile = require('./create-sw');
 
 function resolve (dir) {
   return path.join(__dirname, '../', dir);
+}
+
+const SW_TIMESTAMP = Date.now();
+if (process.env.NODE_ENV === 'production') {
+  createServiceWorkerFile(SW_TIMESTAMP);
 }
 
 module.exports = {
@@ -40,6 +47,12 @@ module.exports = {
       filename: 'static/css/[name].[contenthash:8].css',
       chunkFilename: 'static/css/[name].[contenthash:8].css'
     }),
+    new CopyWebpackPlugin([
+      { 
+        from: resolve('src/sw.js'), 
+        to: '.' 
+      }
+    ]),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: config.build.index,
@@ -55,7 +68,9 @@ module.exports = {
         minifyCSS: true,
         minifyJS: true,
         minifyURLs: true
-      }
+      },
+      isProd: process.env.NODE_ENV === 'production',
+			SW_TIMESTAMP
     })
   ],
   module: {

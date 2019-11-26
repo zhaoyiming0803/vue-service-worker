@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +36,7 @@
     }
   </style>
 </head>
+
 <body>
   <div id="app"></div>
   <div>hello service worker! ^_^</div>
@@ -44,7 +46,7 @@
   <script src="https://zymfe.github.io/static/js/vue-library.min.js"></script>
 
   <script>
-    function toast (message, type) {
+    function toast(message, type) {
       var toast = document.querySelector('#toast');
       var classList = toast.classList;
       toast.innerHTML = message;
@@ -59,33 +61,23 @@
     }
   </script>
 
+  <% if (htmlWebpackPlugin.options.isProd) { %>
   <script type="text/javascript">
-    ;(function () {
-      if ('serviceWorker' in navigator) {
+    ; (function (window) {
+      if ('serviceWorker' in window.navigator) {
         window.addEventListener('load', function () {
-          navigator.serviceWorker.register('./sw.js?v=201907212150', {scope: './'})
+          navigator.serviceWorker.register('/sw.js?v=' + <%= htmlWebpackPlugin.options.SW_TIMESTAMP %>, { scope: './' })
             .then(function (registration) {
               console.log('[Service Worker regist success]: ', registration);
             })
             .catch(function (error) {
               console.error('[Service Worker regist error]: ', error);
             });
-
-          navigator.serviceWorker.oncontrollerchange = function () {
-            // 一般情况下，不用专门提示用户页面已更新，除非一些特殊需求
-            toast('页面已更新', 'info');
-          }
-
-          if (!navigator.onLine) {
-            toast('网络已断开，内容可能过期', 'error');
-
-            window.addEventListener('online', function () {
-              toast('网络已链接，刷新获取最新内容', 'info');
-            });
-          }
         });
       }
-    })();
+    })(window);
   </script>
+  <% } %>
 </body>
+
 </html>

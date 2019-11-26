@@ -1,5 +1,14 @@
+/**
+ * create service worker file, and update cache automatically
+ * @author zhaoyiming
+ * @since  2019/11/26
+ */
+const fs = require('fs');
+const path = require('path');
 
-    const cacheVersion = "1574775831217";
+module.exports = function createSwFile (timestamp) {
+  const serviceWorkerFileStr = `
+    const cacheVersion = "${timestamp}";
     const cacheName = 'sw-cache' + cacheVersion;
     const preCacheUrls = [];
 
@@ -61,4 +70,7 @@
         );
       }
       return networkResponse;
-    }
+    }`;
+  
+  fs.writeFileSync(path.resolve(__dirname, '../src/sw.js'), serviceWorkerFileStr);
+}

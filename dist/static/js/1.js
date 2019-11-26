@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{4:function(n,t,e){"use strict";e.r(t);var r={data:function(){return{}}},u=e(2),a=Object(u.a)(r,function(){var n=this,t=n.$createElement,e=n._self._c||t;return e("div",[n._v("\n  index Page\n  "),e("router-link",{attrs:{to:"/list"}},[n._v("去列表页")])],1)},[],!1,null,null,null);t.default=a.exports}}]);

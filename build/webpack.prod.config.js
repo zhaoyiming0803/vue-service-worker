@@ -43,16 +43,11 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: buildConfig.assetsSubDirectory,
-        ignore: ['.*']
-      },
-      {
-        from: path.resolve(__dirname, '../sw.js'),
-        to: '.',
-        ignore: ['.*']
-      }
+      // {
+      //   from: path.resolve(__dirname, '../static'),
+      //   to: buildConfig.assetsSubDirectory,
+      //   ignore: ['.*']
+      // }
     ])
   ]
 });
