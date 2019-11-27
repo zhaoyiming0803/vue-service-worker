@@ -68,10 +68,10 @@
         window.addEventListener('load', function () {
           navigator.serviceWorker.register('/sw.js?v=' + <%= htmlWebpackPlugin.options.SW_TIMESTAMP %>, { scope: './' })
             .then(function (registration) {
-              console.log('[Service Worker regist success]: ', registration);
+              console.log('[Service Worker regist successfully]: ', registration);
             })
             .catch(function (error) {
-              console.error('[Service Worker regist error]: ', error);
+              console.error('[Service Worker regist failed]: ', error);
             });
         });
       }
